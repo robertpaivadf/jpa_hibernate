@@ -15,9 +15,15 @@ public class Programa {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa"); // chama essa conf. lá do
 		EntityManager em = emf.createEntityManager();
 
+		//pesquisando uma pessoa	
 		Pessoa p = em.find(Pessoa.class, 2);
 		
 		System.out.println(p);
+		
+		//deletando uma pessoa
+		em.getTransaction().begin();
+		em.remove(p);
+		em.getTransaction().commit();
 		
 		System.out.println("Pronto!");
 		em.close();
